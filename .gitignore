@@ -1,0 +1,25 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# runtime artefacts that must never be committed
+dsh-home/
+dsh/
+node/
+.npm-cache/
+*.log
+
+# generated remote config (contains machine-local paths)
+dsh-remote.env
+
+# secrets
+*.pem
+bohrium_access_key
+.env
+
+# python
+__pycache__/
+*.py[cod]

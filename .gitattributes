@@ -1,0 +1,13 @@
+# Shell scripts and Python must keep LF everywhere — CRLF breaks the shebang.
+* text=auto eol=lf
+
+*.sh    text eol=lf
+*.py    text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.json  text eol=lf
+
+# Windows-only scripts prefer CRLF.
+*.ps1   text eol=crlf
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
