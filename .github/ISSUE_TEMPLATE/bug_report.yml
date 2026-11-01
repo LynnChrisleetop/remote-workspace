@@ -1,0 +1,55 @@
+name: Bug report
+description: 安装失败、打不开界面、命令没输出等问题
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先看一眼 [docs/troubleshooting.md](../../docs/troubleshooting.md)，
+        大部分症状（`dsh` 静默无输出、token 失效、工作区翻不到目录、沙箱报错）都在里面。
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 发生了什么
+      description: 期望的行为 vs 实际的行为
+      placeholder: 运行 install-remote.sh 后 …… 但期待 ……
+    validations:
+      required: true
+  - type: input
+    id: command
+    attributes:
+      label: 执行的命令
+      description: 完整命令（记得把主机名/IP 换成占位符）
+      placeholder: ./install-remote.sh --host my-devbox --prefix /data/.dsh
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: 输出 / 报错
+      description: 完整贴出来，包含最后几行。涉密内容请打码。
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: remote-os
+    attributes:
+      label: 远端环境
+      description: 操作系统、CPU 架构、是否容器
+      placeholder: Ubuntu 22.04 / x86_64 / Docker 容器
+    validations:
+      required: true
+  - type: input
+    id: node-version
+    attributes:
+      label: 远端 Node 版本
+      description: 系统 node 版本（安装器自带的私有 node 不用填）
+      placeholder: v20.20.2
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 自查
+      options:
+        - label: 远端 `$PREFIX/dsh/bin/dsh -V` 能打印出版本号
+        - label: 已确认 `dsh web` 只监听 127.0.0.1，且我是通过 SSH 隧道访问的
+        - label: 已阅读 docs/troubleshooting.md

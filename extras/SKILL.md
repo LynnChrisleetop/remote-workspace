@@ -14,8 +14,7 @@ description: 联网搜索（文献+网页）。当需要查最新进展、找论
 python3 __WEBSEARCH_PATH__ "查询词" [选项]
 ```
 
-> 把 `__WEBSEARCH_PATH__` 换成 `websearch.py` 的实际路径，例如
-> `/home/you/tools/websearch.py`。
+> `__WEBSEARCH_PATH__` 是脚本的实际路径（安装时替换成你自己的）。
 
 | 选项 | 说明 |
 |---|---|

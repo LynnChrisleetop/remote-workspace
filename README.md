@@ -35,7 +35,7 @@ grep/glob）零同步开销，agent 的 shell 与你的 tmux、conda 环境、GP
 ### 1. 在远端装好（在你自己电脑上跑，一条命令）
 
 ```bash
-git clone https://github.com/<you>/dsh-remote-workspace.git
+git clone https://github.com/LynnChrisleetop/remote-workspace.git
 cd dsh-remote-workspace
 ./install-remote.sh --host my-devbox
 ```
@@ -52,7 +52,7 @@ cd dsh-remote-workspace
 不想 clone 也可以：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<you>/dsh-remote-workspace/main/install-remote.sh \
+curl -fsSL https://raw.githubusercontent.com/LynnChrisleetop/remote-workspace/main/install-remote.sh \
   | bash -s -- --host my-devbox
 ```
 

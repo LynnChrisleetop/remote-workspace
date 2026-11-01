@@ -30,6 +30,38 @@ DSH 的工作区（workspace）在存储里就是一个**本地绝对路径**。
 推论很直接：想让「工作区 + 对话历史」都待在开发机上、并且换电脑还能接着用，
 唯一的做法就是**让 DSH 跑在开发机上**。这就本仓库做的一件事。
 
+## 连接时序
+
+第一次用要装一次；之后每次只是「取 URL + 开隧道」两步，都由一个脚本完成。
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as 你（笔记本）
+    participant S as SSH
+    participant R as 远程开发机
+    participant B as 浏览器
+
+    Note over U,R: 一次性：初始化
+    U->>S: install-remote.sh --host devbox
+    S->>R: 检查 Node（< 24 就装私有 Node 24）
+    S->>R: npm i -g --prefix … @deepseek-ai/dsh
+    S->>R: 写 start-web.sh + dsh-remote.env
+    S->>R: 预注册 workspace.json
+    S->>R: 起 dsh web（只监听 127.0.0.1）
+    R-->>U: 打印带 token 的 URL
+
+    Note over U,B: 日常：每次连接
+    U->>S: connect.sh --host devbox
+    S->>R: start-web.sh（已在跑就直接返回 URL）
+    R-->>U: tokenized URL
+    U->>S: ssh -N -L 8787:127.0.0.1:8787
+    U->>B: 打开 http://127.0.0.1:8787/?token=…
+    B->>R: 经隧道拿到界面与会话历史
+```
+
+换一台电脑时，只有「你」这一列变了，其余三列完全不动 —— 这就是「历史跟着开发机走」的含义。
+
 ## 结构
 
 ```

@@ -1,0 +1,37 @@
+name: shellcheck
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.sh"
+      - ".github/workflows/shellcheck.yml"
+  pull_request:
+    paths:
+      - "**/*.sh"
+  workflow_dispatch:
+
+jobs:
+  scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: bash -n (hard syntax gate)
+        run: |
+          set -e
+          for f in $(git ls-files '*.sh'); do
+            echo "bash -n $f"
+            bash -n "$f"
+          done
+
+      - name: shellcheck (errors only)
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          # Errors block the build; style warnings (unquoted vars, dynamic
+          # source targets, ...) are reported in the log but do not fail CI.
+          severity: error
+          ignore_names: SC1090 SC1091
+
+      - name: python syntax (extras)
+        run: python3 -m py_compile extras/websearch.py && echo "py_compile OK"

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 排错手册
+    url: https://github.com/LynnChrisleetop/remote-workspace/blob/main/docs/troubleshooting.md
+    about: 安装失败、界面打不开、命令无输出等问题，先看这里
+  - name: 架构说明
+    url: https://github.com/LynnChrisleetop/remote-workspace/blob/main/docs/architecture.md
+    about: 为什么把 DSH 装到远端 / 和其他方案的取舍
